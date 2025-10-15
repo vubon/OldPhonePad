@@ -114,3 +114,35 @@ The algorithm processes the input character by character:
 
 3. **Letter Selection**: Uses modulo arithmetic to cycle through letters
 4. **Backspace Handling**: Maintains a StringBuilder for efficient character removal
+
+
+## Project Structure
+
+```
+OldPhonePad/
+├── OldPhonePad.sln              # Solution file
+├── OldPhonePad/                 # Main library project
+│   ├── OldPhonePad.csproj       # Project file
+│   └── OldPhonePad.cs           # Main implementation
+└── README.md                    # This file
+```
+
+### Prerequisites
+- .NET 9.0 SDK
+- Windows, macOS, or Linux
+- Any text editor
+
+## Command List
+```bash
+# Clone or download the project
+cd OldPhonePad
+
+# Restore packages
+dotnet restore
+
+# Build the solution
+dotnet build
+
+# Run the console 
+dotnet run --project OldPhonePad.Console
+```
