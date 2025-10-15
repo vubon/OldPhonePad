@@ -1,0 +1,14 @@
+# .NET Core
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.dll
+*.exe
+*.pdb
+*.log
+
+# JetBrains Rider
+.idea/
+*.sln.iml
