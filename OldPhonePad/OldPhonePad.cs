@@ -24,6 +24,12 @@ namespace OldPhonePad
             var index = (pressCount - 1) % letters.Length;
             return letters[index];
         }
+        
+        // Add this function only for test cases.
+        public static IReadOnlyDictionary<char, string> GetKeyMapping()
+        {
+            return KeyMapping;
+        }
 
         public static string Process(string input)
         {
