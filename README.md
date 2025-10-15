@@ -120,11 +120,17 @@ The algorithm processes the input character by character:
 
 ```
 OldPhonePad/
-├── OldPhonePad.sln              # Solution file
-├── OldPhonePad/                 # Main library project
-│   ├── OldPhonePad.csproj       # Project file
-│   └── OldPhonePad.cs           # Main implementation
-└── README.md                    # This file
+├── OldPhonePad.sln                # Solution file
+├── OldPhonePad/                   # Main library project
+│   ├── OldPhonePad.csproj         # Project file
+│   └── OldPhonePad.cs             # Main implementation
+├── OldPhonePad.Console/           # Console demo project
+│   ├── OldPhonePad.Console.csproj # Console project file
+│   └── Program.cs                 # Console application
+├── OldPhonePad.Tests/             # Test project
+│   ├── OldPhonePad.Tests.csproj   # Test project file
+│   └── OldPhonePadTests.cs        # Test cases
+└── README.md                      # This file
 ```
 
 ### Prerequisites
@@ -148,4 +154,17 @@ dotnet build
 
 # Run the console 
 dotnet run --project OldPhonePad.Console
+```
+
+### Running Tests
+
+```bash
+# Run all tests
+dotnet test
+
+# Run tests with detailed output
+dotnet test --verbosity normal
+
+# Run tests with coverage
+dotnet test --collect:"XPlat Code Coverage"
 ```
