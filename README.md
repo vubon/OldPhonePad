@@ -129,6 +129,9 @@ OldPhonePad/
 
 ### Prerequisites
 - .NET 9.0 SDK
+  - Download .NET 9.0 SDK from [Microsoft's website](https://dotnet.microsoft.com/download)
+  - Run the installer and follow the instructions
+  - Verify installation: `dotnet --version`
 - Windows, macOS, or Linux
 - Any text editor
 
