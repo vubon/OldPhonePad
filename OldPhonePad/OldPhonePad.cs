@@ -4,6 +4,7 @@ namespace OldPhonePad
 {
     public static class OldPhonePad
     {
+        // KeyMap function for each Key (2-9)
         private static readonly Dictionary<char, string> KeyMapping = new Dictionary<char, string>()
         {
             { '2', "ABC" },
@@ -16,21 +17,30 @@ namespace OldPhonePad
             { '9', "WXYZ" },
         };
 
+        // Get letter from corresponding to a key press sequence 
+        // 
         private static char GetLetterFromKey(char key, int pressCount)
         {
+            // Return null (`\0`) if get invalid key (e.g. A)
             if (!KeyMapping.ContainsKey(key))
                 return '\0';
+            
+            // Get key letters (e.g. 2 = ABC)
             var letters = KeyMapping[key];
+            
+            // Press count is 1-based, but array is 0-based
             var index = (pressCount - 1) % letters.Length;
+            
             return letters[index];
         }
         
-        // Add this function only for test cases.
+        // This function only for test cases.
         public static IReadOnlyDictionary<char, string> GetKeyMapping()
         {
             return KeyMapping;
         }
-
+        
+        // Main Character processing logic function 
         public static string Process(string input)
         {
             if (string.IsNullOrEmpty(input))
