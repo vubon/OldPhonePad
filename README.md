@@ -168,3 +168,18 @@ dotnet test --verbosity normal
 # Run tests with coverage
 dotnet test --collect:"XPlat Code Coverage"
 ```
+
+# Docker Setup for OldPhonePad
+## Prerequisites
+- Docker installed on your system
+
+```bash
+# Build
+docker build -t oldphonepad:latest .
+
+# Run
+docker run --rm oldphonepad:latest
+
+# With input
+echo "8 88777444666*664#" | docker run -i --rm oldphonepad:latest
+```
