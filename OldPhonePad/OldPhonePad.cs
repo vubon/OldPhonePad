@@ -43,11 +43,15 @@ namespace OldPhonePad
         // Main Character processing logic function 
         public static string Process(string input)
         {
+            // Check the income data, if null or empty throw error 
             if (string.IsNullOrEmpty(input))
                 throw new ArgumentException("Input cannot be empty or null", nameof(input));
+            
+            // input data should have `#` end of the string. If not raise the error 
             if (!input.EndsWith("#"))
                 throw new ArgumentException("Input must end with '#'", nameof(input));
             
+            // State variable.. This variables will reuse of each step except the result one
             var result = new StringBuilder();
             var currentKey = '\0';
             var pressCount = 0;
@@ -55,6 +59,8 @@ namespace OldPhonePad
             for (var i = 0; i < input.Length; i++)
             {
                 var currentChar = input[i];
+                
+                // If current Character is `#` and look the currentKey is not `\0` append letter in the result string 
                 if (currentChar == '#')
                 {
                     if (currentKey != '\0')
