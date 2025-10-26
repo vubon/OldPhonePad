@@ -6,9 +6,8 @@ obj/
 *.cache
 
 # Ignore test results
-TestResults/
-*.trx
-*.coverage
+OldPhonePad.Tests/TestResults/
+OldPhonePad.Tests/CoverageReport/
 
 # Ignore IDE files
 .vs/
@@ -25,12 +24,7 @@ Thumbs.db
 
 # Ignore documentation (optional - remove if you want docs in container)
 README.md
-INSTALL.md
-SUMMARY.md
-Examples.cs
-build.sh
 
 # Ignore Docker files
 Dockerfile
 .dockerignore
-docker-compose.yml
