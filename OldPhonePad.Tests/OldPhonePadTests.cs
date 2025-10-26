@@ -260,5 +260,26 @@
             // Assert
             Assert.Equal("E", result); // 22 gives B, * removes it, 33 gives E
         }
+        
+        [Fact]
+        public void OldPhonePad_WithInvalidKeyInSequence_IgnoresInvalidKey()
+        {
+            // Arrange & Act - Test the !KeyMapping.ContainsKey(c) branch in switch expression
+            // This should trigger the yellow line: var c when !KeyMapping.ContainsKey(c) => ('\0', 0, true)
+            var result = OldPhonePad.Process("1#");
+
+            // Assert - Invalid key '1' should be ignored, resulting in empty string
+            Assert.Equal("", result);
+        }
+        
+        [Fact]
+        public void GetLetterFromKey_WithInvalidKey_ReturnsNullCharacter()
+        {
+            // Arrange & Act - Directly test the return '\0' path in GetLetterFromKey
+            var result = OldPhonePad.GetLetterFromKey('1', 1);
+
+            // Assert - Invalid key '1' should return '\0'
+            Assert.Equal('\0', result);
+        }
     }
 }
