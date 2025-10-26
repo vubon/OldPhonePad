@@ -101,6 +101,48 @@ State Variables:
 - Continue the loop 
 ```
 
+### Design Decision: Using `'\0'` as Sentinel Value
+
+The algorithm uses `'\0'` (null character) as a sentinel value to indicate "no key currently pressed". 
+This design choice was made for several important reasons:
+
+#### Why `'\0'`?
+
+1. **Type Safety**: The method returns `char`, not `string`, so we need a character value to represent "no key"
+2. **Memory Efficiency**: `'\0'` is a single character (2 bytes) vs alternatives that would require more memory
+3. **Standard Convention**: `'\0'` is the standard "null character" in programming, widely recognized
+4. **Clear Semantics**: `'\0'` clearly means "no value" or "invalid character"
+5. **Performance**: No string comparisons needed - just simple character equality checks
+
+#### Alternative Approaches Considered:
+
+| Approach                    | Why Not Used |
+|-----------------------------|--------------|
+| **Empty String `""`**       | ❌ Would require changing return type from `char` to `string`, breaking the API |
+| **Special Character `'?'`** | ❌ Could be confusing - is `'?'` a valid result or error indicator? |
+| **Nullable `char?`**        | ❌ Adds complexity with null checking throughout the code |
+| **Exception Throwing**      | ❌ Overkill for this simple case - not an exceptional condition |
+| **Boolean Flag**            | ❌ Would require additional state variables, making code more complex |
+
+#### Code Example:
+```csharp
+// Using '\0' as sentinel value
+var currentKey = '\0';  // Indicates "no key currently pressed"
+
+// Easy to check
+if (currentKey != '\0')  // Simple character comparison
+{
+    result.Append(GetLetterFromKey(currentKey, pressCount));
+}
+
+// vs alternatives that would be more complex:
+// if (currentKey != null)           // Nullable approach
+// if (currentKey != '?')            // Special character approach  
+// if (!string.IsNullOrEmpty(currentKey))  // String approach
+```
+
+This design choice makes the code **simpler, faster, and more maintainable** while following established programming conventions.
+
 ## Algorithm Details
 
 The algorithm processes the input character by character:
@@ -167,6 +209,15 @@ dotnet test --verbosity normal
 
 # Run tests with coverage
 dotnet test --collect:"XPlat Code Coverage"
+
+# Generate HTML coverage report (requires ReportGenerator tool)
+# Install ReportGenerator: dotnet tool install -g dotnet-reportgenerator-globaltool
+~/.dotnet/tools/reportgenerator -reports:"./OldPhonePad.Tests/TestResults/**/coverage.cobertura.xml" -targetdir:"./OldPhonePad.Tests/CoverageReport" -reporttypes:Html
+```
+
+**Note**: The HTML coverage report requires the `dotnet-reportgenerator-globaltool` to be installed. If you haven't installed it yet, run:
+```bash
+dotnet tool install -g dotnet-reportgenerator-globaltool
 ```
 
 # Docker Setup for OldPhonePad
